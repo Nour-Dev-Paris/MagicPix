@@ -1,7 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<div class="wallpaper_main">
+    {% for label, messages in app.flashes %}
+        <div class="container">
+            <div class="alert alert-{{label}}">
+                {% for message in messages %}
+                    <p>{{ message | raw }}</p>
+                {% endfor %}
+            </div>
+        </div>
+    {% endfor %}
 
     <div class="jumbotron mt-5">
         <h1 class="display-3">Bienvenue sur MagicPix !</h1>
@@ -9,8 +17,12 @@
         <hr class="my-4">
         <p>Vous êtes curieux et vous souhaitez découvrir les galeries d'artistes ?</p>
         <p class="lead">
-            <a class="btn btn-primary btn-lg" href="#" role="button">Voir les galleries</a>
+            <a class="btn btn-primary btn-lg" href="#" role="button">Voir les galeries</a>
         </p>
+        {% if app.user %}
+            <div class="mt-3">
+                <a href=" {{ path('users_show', {'slug': app.user.slug}) }} " role="button" class="btn btn-primary btn-lg">Voir ma galerie</a> 
+            </div>
+        {% endif %}
     </div>
-</div>
 {% endblock %}
