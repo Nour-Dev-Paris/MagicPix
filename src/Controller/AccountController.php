@@ -171,12 +171,24 @@ class AccountController extends AbstractController
      * @return Response
      */
     public function uploadPicture(Request $request,EntityManagerInterface $manager) {
-        $user = $this->getUser();
         $image = new Image();
-
+        $user = new User();
+        
         $form = $this->createForm(ImageType::class, $image);
 
         $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            foreach($user->getImages() as $image) {
+                $image->setUser($user);
+                $manager->persist($image);
+            }
+
+            $image->setUser($this->getUser());
+
+            $manager->persist($image);
+            $manager->flush();
+        }
 
         dump($image);
 
