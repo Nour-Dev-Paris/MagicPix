@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Entity\Image;
+use App\Form\ImageType;
 use App\Form\AccountType;
 use App\Entity\PasswordUpdate;
 use App\Form\RegistrationType;
@@ -13,6 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -30,10 +33,15 @@ class AccountController extends AbstractController
     {
         $error = $utils->getLastAuthenticationError();
         $username = $utils->getLastUsername();
+        $user = $this->getUser();
 
         return $this->render('account/login.html.twig', [
             'hasError' => $error !== null,
             'username' =>$username
+        ]);
+
+        return $this->redirectToRoute('users_show', [
+            'slug' => app.user.slug
         ]);
     }
 
@@ -151,6 +159,28 @@ class AccountController extends AbstractController
         }
 
         return $this->render('account/password.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * Permet d'ajouter des images via le formulaire
+     * 
+     * @Route("/account/upload", name="account_upload")
+     *
+     * @return Response
+     */
+    public function uploadPicture(Request $request,EntityManagerInterface $manager) {
+        $user = $this->getUser();
+        $image = new Image();
+
+        $form = $this->createForm(ImageType::class, $image);
+
+        $form->handleRequest($request);
+
+        dump($image);
+
+        return $this->render('account/upload.html.twig', [
             'form' => $form->createView()
         ]);
     }

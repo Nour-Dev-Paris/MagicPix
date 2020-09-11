@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajoutez des images{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">       
+            <h1>Ajoutez des images à votre galerie</h1>
+
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+
+            <button type="submit" class="btn btn-primary">Ajoutez l'image</button>
+            {{ form_end(form) }}
+            
+    </div>
+{% endblock %}
