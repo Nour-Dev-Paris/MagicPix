@@ -5,6 +5,17 @@
 {# {% form_theme form _self %} #}
 
 {% block body %}
+
+    {% for label, messages in app.flashes %}
+        <div class="container">
+            <div class="alert alert-{{label}}">
+                {% for message in messages %}
+                    <p>{{ message | raw }}</p>
+                {% endfor %}
+            </div>
+        </div>
+    {% endfor %}
+
     <div class="container mt-5">       
             <h1>Ajoutez des images à votre galerie</h1>
 

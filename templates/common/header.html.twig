@@ -20,6 +20,8 @@
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="accountDropdownLink">
+                        <a href=" {{ path('account_upload') }} " class="dropdown-item">Ajoutez des photos</a>
+                        <div class="dropdown-divider"></div>
                         <a href=" {{ path('users_show', {'slug': app.user.slug}) }} " class="dropdown-item">Ma galerie</a>
                         <a href=" {{ path('account_profile') }} " class="dropdown-item">Modifier mon profil</a>
                         <div class="dropdown-divider"></div>

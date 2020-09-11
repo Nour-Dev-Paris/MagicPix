@@ -188,9 +188,12 @@ class AccountController extends AbstractController
 
             $manager->persist($image);
             $manager->flush();
-        }
 
-        dump($image);
+            $this->addFlash(
+                'success',
+                "Votre photo a bien été ajoutée !"
+            );
+        }
 
         return $this->render('account/upload.html.twig', [
             'form' => $form->createView()
