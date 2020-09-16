@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Image;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -30,8 +31,9 @@ class ImageType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('url', UrlType::class, $this->getConfiguration("Url de l'image", "Veuillez entrez l'URL de votre image"))
+            // ->add('url', UrlType::class, $this->getConfiguration("Url de l'image", "Veuillez entrez l'URL de votre image"))
             ->add('caption', TextType::class, $this->getConfiguration("Légende de l'image", "Veuillez ajoutez la légende de votre image"))
+            ->add('imageFile', VichImageType::class, $this->getConfiguration("Téléchargez votre image", "Veuillez choisir un fichier"))
             // ->add('user')
         ;
     }

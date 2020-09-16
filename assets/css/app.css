@@ -33,3 +33,7 @@ div.carousel-caption h3, div.carousel-caption h4 {
     height: 100px;
     border-radius: 50%;
 }
+
+.vich-image a img {
+    display: none;
+}

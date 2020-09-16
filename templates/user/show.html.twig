@@ -27,8 +27,9 @@
                         </ol>
                         <div class="carousel-inner">
                             {% for image in user.images %}
+                            {# {{ dump(image.imageFile) }} #}
                                 <div class="carousel-item {% if loop.first %}active{% endif %}">
-                                    <img src=" {{ image.url }} " class="d-block w-100" alt="#">
+                                    <img src=" {{ asset(vich_uploader_asset(image, 'imageFile')) }} " class="d-block w-100" alt="#">
                                     <div class="carousel-caption d-none d-md-block">
                                         <h3>{{user.pseudo}}</h3>
                                         <h4>{{ image.caption }}</h4>
