@@ -16,6 +16,8 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -93,6 +95,7 @@ class AccountController extends AbstractController
      * Permet d'afficher et de traiter le formulaire de modification de profil
      * 
      * @Route("/account/profile", name="account_profile")
+     * @IsGranted("ROLE_USER")
      *
      * @return Response
      */
@@ -122,6 +125,7 @@ class AccountController extends AbstractController
      * Permet de modifier le mot de passe
      * 
      * @Route("/account/password-update", name="account_password")
+     * @IsGranted("ROLE_USER")
      *
      * @return Response
      */
@@ -167,6 +171,7 @@ class AccountController extends AbstractController
      * Permet d'ajouter des images via le formulaire
      * 
      * @Route("/account/upload", name="account_upload")
+     * @IsGranted("ROLE_USER")
      *
      * @return Response
      */

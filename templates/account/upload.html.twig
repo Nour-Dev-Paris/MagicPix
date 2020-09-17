@@ -23,6 +23,7 @@
             {{ form_widget(form) }}
 
             <button type="submit" class="btn btn-primary">Ajoutez l'image</button>
+            <a href=" {{ path('users_show', {'slug': app.user.slug}) }} " class="btn btn-primary">Retour à ma galerie</a>
             {{ form_end(form) }}
             
     </div>
