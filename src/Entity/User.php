@@ -92,6 +92,16 @@ class User implements UserInterface
     private $userRoles;
 
     /**
+     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="galery", orphanRemoval=true)
+     */
+    private $comments;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="author", orphanRemoval=true)
+     */
+    private $author;
+
+    /**
      *  Initialise le slug
      * 
      * @ORM\PrePersist
@@ -111,6 +121,8 @@ class User implements UserInterface
     {
         $this->images = new ArrayCollection();
         $this->userRoles = new ArrayCollection();
+        $this->comments = new ArrayCollection();
+        $this->author = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -294,6 +306,68 @@ class User implements UserInterface
         if ($this->userRoles->contains($userRole)) {
             $this->userRoles->removeElement($userRole);
             $userRole->removeUser($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Comment[]
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comment $comment): self
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments[] = $comment;
+            $comment->setGalery($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): self
+    {
+        if ($this->comments->contains($comment)) {
+            $this->comments->removeElement($comment);
+            // set the owning side to null (unless already changed)
+            if ($comment->getGalery() === $this) {
+                $comment->setGalery(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Comment[]
+     */
+    public function getAuthor(): Collection
+    {
+        return $this->author;
+    }
+
+    public function addAuthor(Comment $author): self
+    {
+        if (!$this->author->contains($author)) {
+            $this->author[] = $author;
+            $author->setAuthor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAuthor(Comment $author): self
+    {
+        if ($this->author->contains($author)) {
+            $this->author->removeElement($author);
+            // set the owning side to null (unless already changed)
+            if ($author->getAuthor() === $this) {
+                $author->setAuthor(null);
+            }
         }
 
         return $this;

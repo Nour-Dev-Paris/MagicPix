@@ -196,7 +196,7 @@ class AccountController extends AbstractController
 
             $this->addFlash(
                 'success',
-                "Votre photo a bien été ajoutée !"
+                "Votre photo a bien été ajoutée ! Vous pouvez ajoutez des photos supplémentaires."
             );
         }
 
