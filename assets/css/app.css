@@ -37,3 +37,7 @@ div.carousel-caption h3, div.carousel-caption h4 {
 .vich-image a img {
     display: none;
 }
+
+span.rating i {
+    color: goldenrod;
+}

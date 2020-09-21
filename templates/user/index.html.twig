@@ -21,7 +21,14 @@
                     </a>
                     <div class="card-body">
                         <p class="card-text"> {{ user.introduction }} </p>
+                        <hr>
+                        {% if user.comments | length > 0 %}
+                            {% include 'common/rating.html.twig' with {'rating': user.avgRatings} %}
+                        {% else %}
+                            <small>Cette galerie n'a pas encore reçu de note</small>
+                        {% endif %}
                     </div>
+                    <hr>
                     {# <ul class="list-group list-group-flush">
                         <li class="list-group-item">Cras justo odio</li>
                         <li class="list-group-item">Dapibus ac facilisis in</li>

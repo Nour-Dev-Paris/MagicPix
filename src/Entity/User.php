@@ -116,6 +116,16 @@ class User implements UserInterface
         }
     }
 
+    public function getAvgRatings() {
+        // Calculer la somme des notations 
+        $sum = array_reduce($this->comments->toArray(), function($total, $comment) {
+            return $total + $comment->getRating();
+        }, 0);
+
+        // Faire la division pour faire la moyenne
+        if(count($this->comments) > 0) return $sum / count($this->comments);
+        return 0;
+    }
 
     public function __construct()
     {
@@ -258,9 +268,6 @@ class User implements UserInterface
     }
 
     public function getRoles() {
-        $roles = $this->userRoles->toArray();
-
-        // dump($roles);
 
         $roles = $this->userRoles->map(function($role){
             return $role->getTitle();
@@ -268,7 +275,7 @@ class User implements UserInterface
 
         $roles[] = 'ROLE_USER';
 
-        return ['ROLE_USER'];
+        return $roles;
     }
 
     public function getPassword() {

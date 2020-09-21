@@ -4,6 +4,16 @@
 
 {% block body %}
 
+    {% for label, messages in app.flashes %}
+        <div class="container">
+            <div class="alert alert-{{label}}">
+                {% for message in messages %}
+                    <p>{{ message | raw }}</p>
+                {% endfor %}
+            </div>
+        </div>
+    {% endfor %}
+
     <div class="user-title" style="background-image: url( {{ user.coverImage }} )">
 
         <div class="container">
@@ -30,6 +40,7 @@
                             {# {{ dump(image.imageFile) }} #}
                                 <div class="carousel-item {% if loop.first %}active{% endif %}">
                                     <img src=" {{ asset(vich_uploader_asset(image, 'imageFile')) }} " class="d-block w-100" alt="#">
+                                    {# <img src=" {{ image.url }} " class="d-block w-100" alt="#"> #}
                                     <div class="carousel-caption d-none d-md-block">
                                         <h3>{{user.pseudo}}</h3>
                                         <h4>{{ image.caption }}</h4>
@@ -78,6 +89,56 @@
                 {{ a.description | raw }}
             </div> #}
         </div>
+
+        <hr>
+
+        {% if app.user %}
+
+            <div class="alert alert-light">
+                <h2 class="alert-heading">Votre avis sur la galerie</h2>
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                <button type="submit" class="btn btn-success">Confirmer</button>
+                {{ form_end(form) }}
+            </div>
+
+        {% else %}
+            <p>Connectez-vous pour laisser un commentaire !</p>
+
+        {% endif %}
+        <hr>
+
+            {% if user.comments | length > 0 %}
+                 <h3 clas="mb-3">Commentaires :</h3>
+                 
+                 <div class="alert alert-dismissible alert-success">
+                    <h4 class="alert-heading">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                Note globale donnée par les utilisateurs 
+                            </div>
+                            <div class="col">
+                                {% include 'common/rating.html.twig' with {'rating': user.avgRatings} %}
+                                <br>
+                                <small>(Calculée sur {{ user.comments | length }} avis)</small>
+                            </div>
+                        </div>
+                    </h4>
+                 </div>
+                {% for comment in user.comments %}
+                    <div class="bg-light rounded mb-3 py-3 px-3">
+                        <strong> {{ comment.author.pseudo }} </strong> a dit :
+                        <blockquote>
+                            {{ comment.content | raw }}
+                        </blockquote>
+                        <strong>Note donnée par {{ comment.author.pseudo }} : </strong>
+
+                        {% include 'common/rating.html.twig' with {'rating': comment.rating} %}                 
+                    </div>            
+                {% endfor %}
+            {% else %}
+                <h3 class="mb-3">Cette galerie n'a pas encore de commentaire ...</h3>
+            {% endif %}
     </div>
 
 
