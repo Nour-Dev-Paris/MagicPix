@@ -12,6 +12,8 @@
     /* width: 100%;
     height: 350px; */
     padding: 3em;
+    background-size: cover;
+    background-position: center center;
 }
 
 div.user-title h1, div.user-title p {

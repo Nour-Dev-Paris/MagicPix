@@ -61,7 +61,7 @@ class UserController extends AbstractController
             );
         }
 
-        $user = $repo->findOneBySlug($slug);
+        // $user = $repo->findOneBySlug($slug);
 
         return $this->render('user/show.html.twig' , [
             'user' => $user,

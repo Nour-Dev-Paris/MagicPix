@@ -9,6 +9,8 @@ use App\Form\AccountType;
 use App\Entity\PasswordUpdate;
 use App\Form\RegistrationType;
 use App\Form\PasswordUpdateType;
+use App\Repository\UserRepository;
+use App\Repository\ImageRepository;
 use Symfony\Component\Form\FormError;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -203,5 +205,47 @@ class AccountController extends AbstractController
         return $this->render('account/upload.html.twig', [
             'form' => $form->createView()
         ]);
+    }
+
+    /**
+     * Permet l'affichage de suppression de photos
+     * 
+     * @Route("/account/{slug}/show_delete", name="show_delete")
+     * @IsGranted("ROLE_USER")
+     * 
+     * @return Response
+     */
+    public function showDelete($slug, UserRepository $repo, EntityManagerInterface $manager)
+    {
+        $user = $repo->findOneBySlug($slug);
+
+        return $this->render('account/delete_picture.html.twig', [
+            'user' => $user
+        ]);
+    }
+
+    /**
+     * Permet la suppression de photos
+     * 
+     * @Route("/account/picture_delete/{id}", name="picture_delete")
+     * @IsGranted("ROLE_USER")
+     * 
+     * @return Response
+     */
+    public function deletePicture(Image $image, EntityManagerInterface $manager)
+    {
+        // $user = $this->getUser();
+        // $image = new Image();
+
+        // $image = $imageFile->getImageFile();
+        // // $image = $images->getImages();
+        // dump($imageFile);
+
+        // die();
+        $manager->remove($image);
+
+        $manager->flush();
+
+        return $this->redirectToRoute('home');
     }
 }
