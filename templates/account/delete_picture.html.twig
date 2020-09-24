@@ -6,7 +6,7 @@
     <div class="container mt-5">
         <h1>Supprimer des photos</h1>
 
-    {% for label, messages in app.flashes %}
+        {% for label, messages in app.flashes %}
             <div class="container">
                 <div class="alert alert-{{label}}">
                     {% for message in messages %}
@@ -25,7 +25,6 @@
                     <a href=" {{ path('picture_delete', {'id': image.id}) }} " class="btn btn-danger text-center mt-2" onclick="return confirm(`Etes vous sur de vouloir supprimer cette photo `)">Supprimer la photo</a>
                 </div>
             {% endfor %}
-        
         </div>
     </div>
 {% endblock %}

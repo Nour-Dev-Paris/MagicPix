@@ -1,0 +1,15 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Modification d'un utilisateur{% endblock %}
+
+{% block body %}
+    <div class="container-fluid mt-2">  
+        <h1>Modification de l'utilisateur {{user.pseudo}}</h1>
+
+        {{form_start(form)}}
+
+        {{form_widget(form)}}
+
+        {{form_end(form)}}
+    </div>
+{% endblock %}

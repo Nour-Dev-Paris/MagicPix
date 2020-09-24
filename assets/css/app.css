@@ -36,6 +36,12 @@ div.carousel-caption h3, div.carousel-caption h4 {
     border-radius: 50%;
 }
 
+.avatar-micro {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
 .vich-image a img {
     display: none;
 }
