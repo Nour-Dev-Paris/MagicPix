@@ -6,10 +6,90 @@
     <div class="container-fluid mt-2">  
         <h1>Modification de l'utilisateur {{user.pseudo}}</h1>
 
+        {% for label, messages in app.flashes %}
+            <div class="container">
+                <div class="alert alert-{{label}}">
+                    {% for message in messages %}
+                        <p>{{ message | raw }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+
         {{form_start(form)}}
 
-        {{form_widget(form)}}
+        <div class="row">
+            <div class="col">
+                <div class="card bg-light">
+                    <div class="card-header">
+                        <h4 class="card-title">Apporter des modifications au profil</h4>
+                    </div>
+                    <div class="card-body">
+                        {{form_widget(form)}}
 
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-check"></i>
+                            Enregistrer les modifications
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card bg-light">
+                    <div class="card-header">
+                        <h4 class="card-title">Les photos</h4>
+                    </div>
+                    <div class="card-body">
+                        {% for image in user.images %}
+                            <div class="text-center">
+                            
+                                <img src=" {{ asset(vich_uploader_asset(image, 'imageFile')) }} " class="d-block w-100 mt-5" alt="#">
+                                <p>Légende : {{ image.caption }}</p>
+                                <a href=" {{ path('picture_delete', {'id': image.id}) }} " class="btn btn-danger text-center mt-2" onclick="return confirm(`Etes vous sur de vouloir supprimer cette photo `)">Supprimer la photo</a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="card bg-light">
+                    <div class="card-header">
+                        <h4 class="card-title">Les commentaires</h4>
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Pseudo</th>
+                                    <th>Note</th>
+                                    <th>Commentaire</th>
+                                    <th>Date</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for comment in user.comments %}
+                                    <tr>
+                                        <td>{{comment.id}}</td>
+                                        <td>{{comment.author.pseudo}}</td>
+                                        <td>{{comment.rating}}</td>
+                                        <td>{{comment.createdAt | date('d/m/Y à H:i')}}</td>
+                                        <td>{{comment.content}}</td>
+                                        <td>
+                                            <a href=" {{ path('admin_comment_edit', {'id': comment.id}) }} " class="btn btn-primary">
+                                                <i class="fas fa-pen"></i>
+                                            </a>
+                                            <a href=" {{ path('admin_comment_delete', {'id': comment.id}) }} " class="btn btn-danger">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
         {{form_end(form)}}
     </div>
 {% endblock %}

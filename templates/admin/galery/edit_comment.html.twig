@@ -1,0 +1,42 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Modification du commentaire n° {{comment.id}}{% endblock %}
+
+{% block body %}
+    <div class="container-fluid mt-2">  
+        <h1>Modification du commentaire n° {{comment.id}} </h1>
+
+        {% for label, messages in app.flashes %}
+            <div class="container">
+                <div class="alert alert-{{label}}">
+                    {% for message in messages %}
+                        <p>{{ message | raw }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+
+        <div class="alert alert-info">
+            <h4><strong>Galerie liée : {{comment.galery.pseudo}}</strong> </h4>
+            <h4><strong>Auteur : {{comment.author.pseudo}}</strong> </h4>
+            <h4><strong>Date de création : {{comment.createdAt | date('d/m/Y à H:i')}}</strong> </h4>
+            <h4><strong>Note donnée : {{comment.rating}}</strong> </h4>
+        </div>
+
+        {{form_start(form)}}
+
+        {{form_widget(form)}}
+
+        <button type="submit" class="btn btn-primary">
+            <i class="fas fa-check"></i>
+            Enregistrer les modifications
+        </button>
+
+        {{form_end(form)}}
+
+        <a href=" {{ path('admin_galerys_index') }} " class="btn btn-primary mt-3">
+            <i class="fas fa-angle-left"></i>
+            Retour au menu
+        </a>
+    </div>
+{% endblock %}
