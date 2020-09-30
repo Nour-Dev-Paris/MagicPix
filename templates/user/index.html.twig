@@ -7,8 +7,9 @@
     <h1>Les galeries des photographes</h1>
 
     <div class="row">
-        {% for user in users %}
+        {% for user in pagination.data %}
             {% set url = path('users_show', {'slug': user.slug}) %}
+            {{dump(url)}}
             <div class="col-md-3 mt-5">  
                 <div class="card mb-3">
                     <h3 class="card-header"> {{ user.pseudo }} </h3>
@@ -46,5 +47,6 @@
             </div>
         {% endfor %}
     </div>
+        {% include 'common/pagination.html.twig' with {'route': 'users_index'} %}
 </div>
 {% endblock %}

@@ -8,6 +8,7 @@ use App\Form\AccountType;
 use App\Form\AdminCommentType;
 use App\Form\RegistrationType;
 use App\Repository\UserRepository;
+use App\Service\PaginationService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,12 +17,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class AdminGaleryController extends AbstractController
 {
     /**
-     * @Route("/admin/galerys", name="admin_galerys_index")
+     * @Route("/admin/galerys/{page<\d+>?1}", name="admin_galerys_index")
      */
-    public function index(UserRepository $repo)
+    public function index(UserRepository $repo, $page, PaginationService $pagination)
     {
+        $pagination->setEntityClass(User::class)
+                   ->setPage($page)
+                   ->setLimit(5);
+        
         return $this->render('admin/galery/index.html.twig', [
-            'users' => $repo->findAll()
+            'pagination' => $pagination
         ]);
     }
 

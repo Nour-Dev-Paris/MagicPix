@@ -1,29 +1,30 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
-    {% for label, messages in app.flashes %}
-        <div class="container">
-            <div class="alert alert-{{label}}">
-                {% for message in messages %}
-                    <p>{{ message | raw }}</p>
-                {% endfor %}
+    <div class="wallpaper">
+        {% for label, messages in app.flashes %}
+            <div class="container">
+                <div class="alert alert-{{label}}">
+                    {% for message in messages %}
+                        <p>{{ message | raw }}</p>
+                    {% endfor %}
+                </div>
             </div>
+        {% endfor %}
+
+        <div class="jumbotron mt-5">
+            <h1 class="display-3">Bienvenue sur MagicPix !</h1>
+            <p class="lead">Nous vous partageons les plus belles réalisations d'artistes photographes</p>
+            <hr class="my-4">
+            <p>Vous êtes curieux et vous souhaitez découvrir les galeries d'artistes ?</p>
+            <p class="lead  d-flex flex-row">
+                <a class="btn btn-primary btn-lg mr-3 p-2" href="{{ path('users_index') }}" role="button">Voir les galeries</a>
+                {% if app.user %}
+
+                        <a href=" {{ path('users_show', {'slug': app.user.slug}) }} " role="button" class="btn btn-primary btn-lg p-2">Voir ma galerie</a> 
+
+                {% endif %}
+            </p>
         </div>
-    {% endfor %}
-
-    <div class="jumbotron mt-5">
-        <h1 class="display-3">Bienvenue sur MagicPix !</h1>
-        <p class="lead">Nous vous partageons les plus belles réalisations d'artistes photographes</p>
-        <hr class="my-4">
-        <p>Vous êtes curieux et vous souhaitez découvrir les galeries d'artistes ?</p>
-        <p class="lead  d-flex flex-row">
-            <a class="btn btn-primary btn-lg mr-3 p-2" href="{{ path('users_index') }}" role="button">Voir les galeries</a>
-            {% if app.user %}
-
-                    <a href=" {{ path('users_show', {'slug': app.user.slug}) }} " role="button" class="btn btn-primary btn-lg p-2">Voir ma galerie</a> 
-
-            {% endif %}
-        </p>
     </div>
 {% endblock %}

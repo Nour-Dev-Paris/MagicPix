@@ -17,6 +17,7 @@ class CommentType extends ApplicationType
     {
         $builder
             ->add('rating', IntegerType::class, $this->getConfiguration("Note sur 5", "Veuillez indiquer votre note", [
+                'required' => false,
                 'attr' => [
                     'min' => 0,
                     'max' => 5,

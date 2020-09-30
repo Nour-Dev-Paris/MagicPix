@@ -6,25 +6,28 @@ use App\Entity\User;
 use App\Entity\Comment;
 use App\Form\CommentType;
 use App\Repository\UserRepository;
+use App\Service\PaginationService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Constraints\Date;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Validator\Constraints\DateTime;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class UserController extends AbstractController
 {
     /**
-     * @Route("/users", name="users_index")
+     * @Route("/users/{page<\d+>?1}", name="users_index")
      */
-    public function index(UserRepository $repo)
+    public function index(UserRepository $repo, $page, PaginationService $pagination)
     {
-        $users = $repo->findAll();
+        $pagination->setEntityClass(User::class)
+                   ->setPage($page)
+                   ->setLimit(4);
 
         return $this->render('user/index.html.twig', [
-            'users' => $users
+            'pagination' => $pagination
         ]);
     }
 
@@ -32,16 +35,15 @@ class UserController extends AbstractController
     /**
      * Affiche une galerie d'un photographe
      * 
-     * @Route("/users/{slug}", name="users_show")
+     * @Route("/users/{slug}/{page<\d+>?1}", name="users_show")
      * 
      * @param Request $request
      * @param EntityManagerInterface $manager
      * @return Response
      */
-    public function show($slug, UserRepository $repo, Request $request, EntityManagerInterface $manager) {
+    public function show($slug, UserRepository $repo, Request $request, EntityManagerInterface $manager, $page, PaginationService $pagination) {
         $comment = new Comment();
         $user = $repo->findOneBySlug($slug);
-        
 
         $form = $this->createForm(CommentType::class, $comment);
 
@@ -61,10 +63,13 @@ class UserController extends AbstractController
             );
         }
 
-        // $user = $repo->findOneBySlug($slug);
+        $pagination->setEntityClass(Comment::class)
+                   ->setPage($page)
+                   ->setLimit(5);
 
         return $this->render('user/show.html.twig' , [
             'user' => $user,
+            'pagination' => $pagination,
             'form' => $form->createView()
         ]); 
     }

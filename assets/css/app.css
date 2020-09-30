@@ -49,3 +49,8 @@ div.carousel-caption h3, div.carousel-caption h4 {
 span.rating i {
     color: goldenrod;
 }
+
+.image_edit {
+    max-width: 50%;
+    max-height: 50%;
+}

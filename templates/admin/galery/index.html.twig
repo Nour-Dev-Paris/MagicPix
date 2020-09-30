@@ -27,7 +27,7 @@
                 </tr>
             </thead>
             <tbody>
-                {% for user in users %}
+                {% for user in pagination.data %}
                     <tr>
                         <td>{{ user.id }}</td>
                         <td>
@@ -46,5 +46,6 @@
                 {% endfor %}
             </tbody>
         </table>
+        {% include 'common/pagination.html.twig' with {'route': 'admin_galerys_index'} %}
     </div>
 {% endblock %}
