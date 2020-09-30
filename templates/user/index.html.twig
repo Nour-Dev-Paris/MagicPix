@@ -9,7 +9,6 @@
     <div class="row">
         {% for user in pagination.data %}
             {% set url = path('users_show', {'slug': user.slug}) %}
-            {{dump(url)}}
             <div class="col-md-3 mt-5">  
                 <div class="card mb-3">
                     <h3 class="card-header"> {{ user.pseudo }} </h3>
