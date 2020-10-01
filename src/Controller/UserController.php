@@ -24,7 +24,7 @@ class UserController extends AbstractController
     {
         $pagination->setEntityClass(User::class)
                    ->setPage($page)
-                   ->setLimit(4);
+                   ->setLimit(8);
 
         return $this->render('user/index.html.twig', [
             'pagination' => $pagination
