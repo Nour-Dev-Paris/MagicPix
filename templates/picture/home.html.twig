@@ -12,19 +12,21 @@
             </div>
         {% endfor %}
 
-        <div class="jumbotron mt-5">
-            <h1 class="display-3">Bienvenue sur MagicPix !</h1>
-            <p class="lead">Nous vous partageons les plus belles réalisations d'artistes photographes</p>
-            <hr class="my-4">
-            <p>Vous êtes curieux et vous souhaitez découvrir les galeries d'artistes ?</p>
-            <p class="lead  d-flex flex-row">
-                <a class="btn btn-primary btn-lg mr-3 p-2" href="{{ path('users_index') }}" role="button">Voir les galeries</a>
-                {% if app.user %}
+        <div class="container py-5">
+            <div class="jumbotron">
+                <h1 class="display-3">Bienvenue sur MagicPix !</h1>
+                <p class="lead">Nous vous partageons les plus belles réalisations d'artistes photographes</p>
+                <hr class="my-4">
+                <p>Vous êtes curieux et vous souhaitez découvrir les galeries d'artistes ?</p>
+                <p class="lead  d-flex flex-row">
+                    <a class="btn btn-primary btn-lg mr-3 p-2" href="{{ path('users_index') }}" role="button">Voir les galeries</a>
+                    {% if app.user %}
 
-                        <a href=" {{ path('users_show', {'slug': app.user.slug}) }} " role="button" class="btn btn-primary btn-lg p-2">Voir ma galerie</a> 
+                            <a href=" {{ path('users_show', {'slug': app.user.slug}) }} " role="button" class="btn btn-primary btn-lg p-2">Voir ma galerie</a> 
 
-                {% endif %}
-            </p>
+                    {% endif %}
+                </p>
+            </div>
         </div>
     </div>
 {% endblock %}

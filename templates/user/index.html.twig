@@ -3,13 +3,13 @@
 {% block title %}MagicPix{% endblock %}
 
 {% block body %}
-<div class="container mt-5">
-    <h1>Les galeries des photographes</h1>
-
+<div class="container">
+    <h1 class="py-5 h1 title_show">Les galeries des photographes</h1>
+    <hr>
     <div class="row">
         {% for user in pagination.data %}
             {% set url = path('users_show', {'slug': user.slug}) %}
-            <div class="col-md-3 mt-5">  
+            <div class="col-md-3">  
                 <div class="card mb-3">
                     <h3 class="card-header"> {{ user.pseudo }} </h3>
                     {# <div class="card-body">

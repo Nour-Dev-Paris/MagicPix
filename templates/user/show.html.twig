@@ -18,12 +18,11 @@
         <div class="container">
             <h1 class="text-center">{{ user.pseudo }}</h1>    
         </div>
-    </div>
-        <div class="container align-items-center">
+        <div class="container text-center">
             {% if user is same as(app.user) %}
                 <div class="lead d-flex flex-row">
-                    <a class="btn btn-outline-success mt-2 mr-2 p-2" href=" {{ path('account_upload') }} ">Ajoutez des photos</a>
-                    <a class="btn btn-outline-danger mt-2 p-2" href=" {{ path('show_delete',{'slug': user.slug}) }} ">Supprimez des photos</a>
+                    <a class="btn btn-secondary mt-2 mr-2 p-2 button_galery" href=" {{ path('account_upload') }} ">Ajoutez des photos</a>
+                    <a class="btn btn-danger mt-2 p-2 button_galery" href=" {{ path('show_delete',{'slug': user.slug}) }} ">Supprimez des photos</a>
                     {# <a href=" {{ path('account_upload') }} " class="btn btn-primary mr-2 mb-2">Ajoutez des photos</a>
                     <a href=" {{ path('show_delete',{'slug': user.slug}) }} " class="btn btn-primary mr-2 mb-2">Supprimez des photos</a> #}
                     {# <a href=" {{ path('account_profile') }} " class="btn btn-primary mr-2 mb-2">Modifier mes informations</a>
@@ -31,6 +30,8 @@
                 </div>
             {% endif %}
         </div>
+    </div>
+        
 
     {# <div class="container lead  d-flex flex-row mt-3">
         <div class="col-10">
@@ -52,17 +53,18 @@
         </div>
     </div> #}
 
-            <div class="col-md-12 mb-6 mt-1">
+            <div class="col-md-12 mb-6 carousel_class">
                 {% autoescape %}
                     {% if user.images | length <= 0 %}
-                        <div class="jumbotron text-center">
+                        
+                        <div class="jumbotron container text-center">
                             <h3>Merci d'être sur ma galerie !</h3>
                             
                             <hr class="my-4">
                             <h4>Un peu de patience, mes photos arrivent ^^</h4>
                         </div>
                     {% else %}
-                    <div class="carousel mt-5">
+                    <div class="carousel">
                         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                         <ol class="carousel-indicators">
                             {% for image in user.images %}
@@ -94,17 +96,26 @@
                     {% endif %}
                 {% endautoescape %}
             </div>
+            
         <div class="container">
             <hr>
 
             {% if app.user %}
-                <div class="alert alert-light">
-                    <h2 class="alert-heading">Votre avis sur la galerie</h2>
-                    {{ form_start(form) }}
-                    {{ form_widget(form) }}
-                    <button type="submit" class="btn btn-success">Confirmer</button>
-                    {{ form_end(form) }}
-                </div>
+
+                {% if user.images | length <= 0 %}
+                    
+                    <p class="h5">Veuillez attendre les photos pour commenter</p>
+                {% else %}
+                    <div class="alert alert-light">
+                        <h2 class="alert-heading">Votre avis sur la galerie</h2>
+                        {{ form_start(form) }}
+                        {{ form_widget(form) }}
+                        <button type="submit" class="btn btn-success">Confirmer</button>
+                        {{ form_end(form) }}
+                    </div>
+
+                {% endif %}
+
             {% else %}
 
                 <p>Connectez-vous pour laisser un commentaire !</p>
@@ -141,6 +152,7 @@
                         {% include 'common/rating.html.twig' with {'rating': comment.rating} %}                 
                     </div>            
                 {% endfor %}
+                
             {% else %}
                 
                 <div class="alert alert-dismissible alert-warning mt-3"> 

@@ -1,15 +1,47 @@
-.jumbotron {
-    border-radius: 20px;
+* 
+{
+    font-family: 'Ubuntu', sans-serif;
 }
 
+.wallpaper
+{
+    background-image: url(/public/images/galery/1t9a5637-5f6631aa54349394535591.jpg);
+    height: 100%;
+    width: 100%;
+}
+.navbar
+ {
+     padding: 0;
+     padding-left: 2%;
+     background-color: black;
+ }
+.jumbotron {
+    border-radius: 20px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
 
+.background {
+    background-color:  #efefef;
+    margin: 0;
+    padding-bottom: 1%;
+}
+
+.button_galery
+{
+    border-radius: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.7em;
+}
 
 .user-title
 {
-    /* width: 100%;
-    height: 350px; */
+    width: 100%;
+    max-height: 300px;
+
     padding: 3em;
-    border-radius: 0px 0px 300px 300px;
+    margin: 0;
+    /* border-radius: 0px 0px 300px 300px; */
     background-size: cover;
     background-position: center center;
 }
@@ -29,8 +61,8 @@ div.carousel-caption h3, div.carousel-caption h4 {
 }
 
 .avatar-mini {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
 }
 
@@ -53,9 +85,25 @@ span.rating i {
     max-height: 50%;
 }
 
+.title_show
+{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar_show {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 .carousel {
-    background-color: black;
+    background-color: #1a1a1a ;
     padding: 20px 0px 20px 0px;
+    margin: 0;
+}
+
+.carousel_class
+{
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .carousel-inner img {
@@ -74,4 +122,9 @@ span.rating i {
     color: black !important;
     height: 20px;
     width: 20px;
+}
+
+footer
+{
+    background-color: black;
 }
