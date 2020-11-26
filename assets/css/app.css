@@ -1,13 +1,28 @@
 * 
 {
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Arial', sans-serif;
+    margin:0;
+    padding:0;
+}
+
+body, html{height:100%;}
+
+body
+{
+    position: relative;
+    min-height: 100%;
 }
 
 .wallpaper
 {
-    background-image: url(/public/images/galery/1t9a5637-5f6631aa54349394535591.jpg);
+    background-image: url(/public/images/galery/colorful_bokeh_4k_8k-3840x2160.jpg);
+    margin:0;
+    padding:0;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-size:cover;
     height: 100%;
-    width: 100%;
+    z-index: -1;
 }
 .navbar
  {
@@ -18,7 +33,7 @@
 .jumbotron {
     border-radius: 20px;
     margin-bottom: 0;
-    padding-bottom: 0;
+    padding-bottom: 1%;
 }
 
 .background {
@@ -127,4 +142,9 @@ span.rating i {
 footer
 {
     background-color: black;
+    /* position: absolute;
+    bottom:0; */
+    width:100%;
+    /* padding-top:50px;
+    height:50px; */
 }
