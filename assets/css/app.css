@@ -15,14 +15,20 @@ body
 
 .wallpaper
 {
-    background-image: url(/public/images/galery/colorful_bokeh_4k_8k-3840x2160.jpg);
+    background-image: url(/public/images/galery/colors_huawei_honor_7x_stock.jpg);
     margin:0;
     padding:0;
     background-position:center;
     background-repeat:no-repeat;
     background-size:cover;
     height: 100%;
-    z-index: -1;
+    width: 100%;
+    position: relative;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /* z-index: -1; */
 }
 .navbar
  {
@@ -34,6 +40,7 @@ body
     border-radius: 20px;
     margin-bottom: 0;
     padding-bottom: 1%;
+    z-index: 1000;
 }
 
 .background {
@@ -142,9 +149,248 @@ span.rating i {
 footer
 {
     background-color: black;
-    /* position: absolute;
-    bottom:0; */
-    width:100%;
+    /* clear: both;
+    position: relative;
+    bottom:0;
+    width:100%; */
     /* padding-top:50px;
     height:50px; */
+}
+
+/* RESPONSIVE  */
+@media screen and (max-device-width: 576px)
+{
+    .navbar-brand
+    {
+        font-size: 4em;
+    }
+
+    .navbar-toggler-icon
+    {
+        font-size: 4em;
+    }
+
+    .nav-link
+    {
+        font-size: 3em;
+    }
+
+    .dropdown-item
+    {
+        font-size: 2.3em;
+    }
+
+    .jumbotron h1 
+    {
+        font-size: 5em;
+    }
+
+    .jumbotron p
+    {
+        font-size: 2.5em;
+    }
+
+    .lead
+    {
+        font-size: 3em;
+    }
+
+    .lead a
+    {
+        /* font-size: 1em; */
+        padding: 35px;
+        border-radius: 10px;
+    }
+
+    .alert-light h2
+    {
+        font-size: 2.5em;
+    }
+
+    .form-group label
+    {
+        font-size: 2.5em;
+    }
+
+    .form-group input
+    {
+        font-size: 2.1em;
+    }
+
+    .form-group textarea
+    {
+        font-size: 2.1em;
+    }
+
+    .alert-light button
+    {
+        font-size: 2em;
+        margin-top: 5%;
+        margin-bottom: 10%;
+        padding: 30px;
+        border-radius: 10px;
+    }
+
+    .title_show
+    {
+        font-size: 4em;
+        width: 100%;
+        text-align: center;
+    }
+
+    .card
+    {
+        /* height: 550px;
+        width: 500px; */
+        margin: 0 auto;
+        margin-bottom: 15% !important;
+    }
+
+    .card-header
+    {
+        font-size: 3em;
+    }
+
+    .card-text
+    {
+        font-size: 2em;
+        font-weight: bold;
+    }
+
+    .card-body button
+    {
+        font-size: 1.5em;
+    }
+
+    .card-body small
+    {
+        font-size: 1.5em;
+    }
+
+    .fa-star
+    {
+        font-size: 2em;
+    }
+
+    /* .button_galery
+    {
+        font-size: 1em !important;
+    } */
+
+    .carousel-control-next-icon
+    {
+        height: 40px;
+        width: 40px;
+        margin-left: 50px;
+    }
+
+    .carousel-control-prev-icon
+    {
+        height: 40px;
+        width: 40px;
+        margin-right: 50px;
+    }
+
+    .carousel-caption h3
+    {
+        font-size: 2.8em;
+    }
+
+    .carousel-caption h4
+    {
+        font-size: 2.3em;
+    }
+
+    .title_connected
+    {
+        font-size: 2.5em;
+        font-weight: bold;
+    }
+
+    .title_comment
+    {
+        font-size: 3.1em;
+    }
+
+    .title_notation
+    {
+        font-size: 1.5em;
+    }
+
+    .alert-dismissible small
+    {
+        font-size: 1.5em !important;
+    }
+
+    .rounded blockquote
+    {
+        font-size: 2.3em;
+        font-weight: 400;
+    }
+
+    .rounded strong
+    {
+        font-size: 2.2em;
+        font-weight: bold;
+    }
+
+    .title_newuser
+    {
+        font-size: 2.8em;
+        margin-bottom: 10%;
+    }
+
+    #registration input
+    {
+        font-size: 2.2em !important;
+    }
+
+    #registration textarea
+    {
+        font-size: 2.3em;
+    }
+
+    .btn-registration
+    {
+        font-size: 2em;
+        margin-bottom: 10%;
+        padding: 30px;
+        border-radius: 10px;
+    }
+
+    .title_login
+    {
+        font-size: 2.8em;
+        margin-bottom: 10%;
+    }
+
+    .login_form label
+    {
+        font-size: 2em;
+    }
+
+    .login_form input
+    {
+        font-size: 2em;
+    }
+
+    .btn_login
+    {
+        font-size: 2em;
+        margin-top: 10%;
+        margin-bottom: 10%;
+        padding: 30px;
+        border-radius: 10px;
+    }
+
+    .bloc_login
+    {
+        margin-bottom: 100px;
+    }
+
+    footer p
+    {
+        font-size: 2em !important;
+    }
+    
 }

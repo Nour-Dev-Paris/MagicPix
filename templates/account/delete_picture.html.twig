@@ -4,7 +4,7 @@
 
 {% block body %}
     <div class="container mt-5">
-        <h1>Supprimer des photos</h1>
+        <h1>Supprimez des photos</h1>
 
         {% for label, messages in app.flashes %}
             <div class="container">
@@ -16,14 +16,16 @@
             </div>
         {% endfor %}
 
-        <div class="container">
+        <div class="row mt-3">
             {% for image in user.images %}
+            <div class="col-3 col-sm-12 col-lg-4 card py-3 mb-3"> 
                 <div class="text-center">
                 
-                    <img src=" {{ asset(vich_uploader_asset(image, 'imageFile')) }} " class="d-block w-100 mt-5" alt="#">
+                    <img src=" {{ asset(vich_uploader_asset(image, 'imageFile')) }} " class="d-block img-fluid mt-3" alt="#">
                     
                     <a href=" {{ path('picture_delete', {'id': image.id}) }} " class="btn btn-danger text-center mt-2" onclick="return confirm(`Etes vous sur de vouloir supprimer cette photo `)">Supprimer la photo</a>
                 </div>
+            </div>
             {% endfor %}
         </div>
     </div>

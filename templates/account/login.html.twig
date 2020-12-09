@@ -6,8 +6,8 @@
     <div class="container">
 
         <div class="row">
-            <div class="col-md-3">&nbsp;</div>
-            <div class="col-md-6">
+            <div class="col-lg-3 col-sm-1">&nbsp;</div>
+            <div class="col-lg-6 col-sm-10 bloc_login">
                 {% for label, messages in app.flashes %}
                     <div class="container">
                         <div class="alert alert-{{label}}">
@@ -17,8 +17,8 @@
                         </div>
                     </div>
                 {% endfor %}
-                <div class="bg-light py-3 px-3 mt-5">
-                    <h1>Connectez vous</h1>
+                <div class="login_form bg-light py-3 px-3 mt-5">
+                    <h1 class="title_login">Connectez vous</h1>
 
                     {% if hasError %}
                         <div class="alert alert-danger">Une erreur est survenue, le nom d'utilisateur ou alors le mot de passe est invalide</div>
@@ -34,7 +34,7 @@
                             <input type="password" name="_password" id="password" placeholder="Mot de passe" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success">Connexion</button>
+                            <button type="submit" class="btn_login btn btn-success">Connexion</button>
                         </div>
                     </form>
                 </div>

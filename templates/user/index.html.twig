@@ -9,7 +9,7 @@
     <div class="row">
         {% for user in pagination.data %}
             {% set url = path('users_show', {'slug': user.slug}) %}
-            <div class="col-md-3">  
+            <div class="col-3 col-sm-12 col-lg-4">  
                 <div class="card mb-3">
                     <h3 class="card-header"> {{ user.pseudo }} </h3>
                     {# <div class="card-body">
@@ -17,7 +17,7 @@
                         <h6 class="card-subtitle text-muted">Support card subtitle</h6>
                     </div> #}
                     <a href=" {{ url }} ">
-                        <img style="height: 200px; width: 100%; display: block;" src=" {{ user.avatar }} "alt="Card image">
+                        <img class="img-fluid" src=" {{ user.avatar }} "alt="Card image">
                     </a>
                     <div class="card-body">
                         <p class="card-text"> {{ user.introduction }} </p>

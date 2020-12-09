@@ -232,20 +232,14 @@ class AccountController extends AbstractController
      * 
      * @return Response
      */
-    public function deletePicture(Image $image, EntityManagerInterface $manager)
+    public function deletePicture(Image $image, EntityManagerInterface $manager, Request $request)
     {
-        // $user = $this->getUser();
-        // $image = new Image();
 
-        // $image = $imageFile->getImageFile();
-        // // $image = $images->getImages();
-        // dump($imageFile);
-
-        // die();
         $manager->remove($image);
 
         $manager->flush();
 
-        return $this->redirectToRoute('home');
+        $referer = $request->headers->get('referer');
+        return $this->redirect($referer);
     }
 }
