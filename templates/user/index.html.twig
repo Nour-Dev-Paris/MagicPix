@@ -3,49 +3,54 @@
 {% block title %}MagicPix{% endblock %}
 
 {% block body %}
-<div class="container">
-    <h1 class="py-5 h1 title_show">Les galeries des photographes</h1>
-    <hr>
-    <div class="row">
-        {% for user in pagination.data %}
-            {% set url = path('users_show', {'slug': user.slug}) %}
-            <div class="col-3 col-sm-12 col-lg-4">  
-                <div class="card mb-3">
-                    <h3 class="card-header"> {{ user.pseudo }} </h3>
-                    {# <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <h6 class="card-subtitle text-muted">Support card subtitle</h6>
-                    </div> #}
-                    <a href=" {{ url }} ">
-                        <img class="img-fluid" src=" {{ user.avatar }} "alt="Card image">
-                    </a>
-                    <div class="card-body">
-                        <p class="card-text"> {{ user.introduction }} </p>
-                        <hr>
-                        {% if user.comments | length > 0 %}
-                            {% include 'common/rating.html.twig' with {'rating': user.avgRatings} %}
-                        {% else %}
-                            <small>Cette galerie n'a pas encore reçu de note</small>
-                        {% endif %}
-                    </div>
-                    <hr>
-                    {# <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Cras justo odio</li>
-                        <li class="list-group-item">Dapibus ac facilisis in</li>
-                        <li class="list-group-item">Vestibulum at eros</li>
-                    </ul> #}
-                    <div class="card-body">
+
+<div class="back_website">
+    <div class="container">
+        <h1 class="py-5 h1 title_show">Les galeries des photographes</h1>
+        
+        <hr>
+        <div class="row">
+            {% for user in pagination.data %}
+                {% set url = path('users_show', {'slug': user.slug}) %}
+                <div class="col-3 col-sm-12 col-lg-4">  
+                    <div class="card mb-3 shadow">
+                        <h3 class="card-header"> {{ user.pseudo }} </h3>
+                        {# <div class="card-body">
+                            <h5 class="card-title">Special title treatment</h5>
+                            <h6 class="card-subtitle text-muted">Support card subtitle</h6>
+                        </div> #}
                         <a href=" {{ url }} ">
-                            <button type="button" class="btn btn-success">Voir la galerie</button>
+                            <img class="img-fluid" src=" {{ user.avatar }} "alt="Card image">
                         </a>
+                        <div class="card-body">
+                            <p class="card-text"> {{ user.introduction }} </p>
+                            <hr>
+                            {% if user.comments | length > 0 %}
+                                {% include 'common/rating.html.twig' with {'rating': user.avgRatings} %}
+                            {% else %}
+                                <small>Cette galerie n'a pas encore reçu de note</small>
+                            {% endif %}
+                        </div>
+                        <hr>
+                        {# <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Cras justo odio</li>
+                            <li class="list-group-item">Dapibus ac facilisis in</li>
+                            <li class="list-group-item">Vestibulum at eros</li>
+                        </ul> #}
+                        <div class="card-body">
+                            <a href=" {{ url }} ">
+                                <button type="button" class="btn btn-success">Voir la galerie</button>
+                            </a>
+                        </div>
+                        {# <div class="card-footer text-muted">
+                            2 days ago
+                        </div> #}
                     </div>
-                    {# <div class="card-footer text-muted">
-                        2 days ago
-                    </div> #}
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
+            {% include 'common/pagination.html.twig' with {'route': 'users_index'} %}
     </div>
-        {% include 'common/pagination.html.twig' with {'route': 'users_index'} %}
 </div>
+
 {% endblock %}

@@ -23,6 +23,7 @@ security:
             form_login:
                 login_path: admin_account_login
                 check_path: admin_account_login
+                always_use_default_target_path: false
 
             logout:
                 path: admin_account_logout

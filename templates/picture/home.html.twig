@@ -13,16 +13,16 @@
         {% endfor %}
 
         <div class="container py-5">
-            <div class="jumbotron">
+            <div class="jumbotron shadow-lg">
                 <h1 class="display-4">Bienvenue sur MagicPix !</h1>
                 <p class="lead">Nous vous partageons les plus belles réalisations d'artistes photographes</p>
                 <hr class="my-4">
                 <p>Vous êtes curieux et vous souhaitez découvrir les galeries d'artistes ?</p>
                 <p class="lead  d-flex flex-row">
-                    <a class="btn btn-primary btn-lg mr-3 p-2" href="{{ path('users_index') }}" role="button">Voir les galeries</a>
+                    <a class="btn btn-primary btn-lg mr-3 p-2 home_button" href="{{ path('users_index') }}" role="button">Voir les galeries</a>
                     {% if app.user %}
 
-                            <a href=" {{ path('users_show', {'slug': app.user.slug}) }} " role="button" class="btn btn-primary btn-lg p-2">Voir ma galerie</a> 
+                            <a href=" {{ path('users_show', {'slug': app.user.slug}) }} " role="button" class="btn btn-primary btn-lg p-2 home_button">Voir ma galerie</a> 
 
                     {% endif %}
                 </p>
